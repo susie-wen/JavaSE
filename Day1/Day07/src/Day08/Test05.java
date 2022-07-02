@@ -10,11 +10,46 @@ package Day08;
 import java.util.*;
 public class Test05 {
     public static void main(String[] args) {
-        //java.util是Scanner类的包名
-        //当导入包之后，就可以省略包名部分了
-        java.util.Scanner s=new java.util.Scanner(System.in);
-        Scanner s1=new Scanner(System.in);
-        String str=s1.next();
-        System.out.println("您输入的参数是"+str);
+        MyTime t=new MyTime(1970,1,1);
+        //MyTime类重写toString()方法之前，输出的结果为:Day08.MyTime@5594a1b5
+        String s1=t.toString();
+        System.out.println(s1);
+        System.out.println(t.toString());
+        //注意：输出引用的时候，会自动调用toString方法
+        System.out.println(t);
     }
 }
+//class MyTime{
+//    private int year;
+//    private int month;
+//    private int day;
+//    public MyTime(){
+//
+//    }
+//
+//    public MyTime(int year, int month, int day) {
+//        this.year = year;
+//        this.month = month;
+//        this.day = day;
+//    }
+//    //重写toString方法，为了能够打印出的是日期而非内存地址
+//    @Override
+//    public String toString() {
+//        return this.year+"年"+this.month+"月"+this.day+"日";
+//    }
+//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

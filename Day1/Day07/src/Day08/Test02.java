@@ -11,10 +11,10 @@ public class Test02 {
     public static void main(String[] args) {
         MyMath m=new My();
         //面向接口编程（调用接口里面的方法
-        int result=m.sub(10,20);
-        System.out.println(result);
-        int result2=m.sum(1,3);
-        System.out.println(result2);
+//        int result=m.sub(10,20);
+//        System.out.println(result);
+//        int result2=m.sum(1,3);
+//        System.out.println(result2);
     }
 }
 
