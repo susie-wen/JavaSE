@@ -34,7 +34,7 @@ public class TestSingleList {
     /**
      * 非递归实现
      */
-    public void printList2(){
+/*    public void printList2(){
         Stack<LinkNoed> Stack=new Stack<>();
         LinkNode cur=head;
         while(cur!=null){
@@ -45,5 +45,5 @@ public class TestSingleList {
             LinkNode top=stack.pop();
             System.out.println(top.val+" ");
         }
-    }
+    }*/
 }
