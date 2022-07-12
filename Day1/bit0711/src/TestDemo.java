@@ -7,7 +7,7 @@
 public class TestDemo {
     public static void main(String[] args) {
         BinaryTree binaryTree=new BinaryTree();
-//        BinaryTree.TreeNode root=binaryTree.createTree();
+        BinaryTree.TreeNode root=binaryTree.createTree();
         System.out.println("前序遍历");
         binaryTree.preOrder(binaryTree.root);
         System.out.println();

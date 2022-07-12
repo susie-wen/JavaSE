@@ -1,7 +1,9 @@
 import com.sun.source.tree.Tree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @author Susie-Wen
@@ -22,8 +24,8 @@ public class BinaryTree {
 
     //这个二叉树的根节点
     public TreeNode root;
-
-    public void createTree(){
+    //创建一颗树
+    public TreeNode createTree(){
         TreeNode A=new TreeNode('A');
         TreeNode B=new TreeNode('B');
         TreeNode C=new TreeNode('C');
@@ -40,6 +42,7 @@ public class BinaryTree {
         C.right=G;
         E.right=H;
         this.root=A;
+        return A;
     }
 
     //前序遍历
@@ -124,12 +127,84 @@ public class BinaryTree {
     TreeNode find(TreeNode root,int val){
         if(root==null)return null;
         if(root.val==val)return root;
-        TreeNode ret1=find(root.left,val);
-        if(ret1!=null) return ret1;
-        TreeNode ret2=find(root.right,val);
-        if(ret2!=null) return ret2;
+        TreeNode ret1=find(root.left,val);//用一个节点接收查找左子树得到的返回值
+        if(ret1!=null) return ret1;//说明在左子树当中找到这个值了
+        TreeNode ret2=find(root.right,val);//用一个节点接收查找右子树得到的返回值
+        if(ret2!=null) return ret2;//说明在右子树当中找到这个值了
+        return null;//说明在根节点和左右子树都没有找到这个结点
+    }
 
-        return null;
+    //层序遍历
+    //可以引伸出的题目
+    //求树的最大宽度，求树的左视图
+    void levelOrder2(TreeNode root){
+        if(root==null)return;
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode cur=queue.poll();
+            System.out.println(cur.val+" ");//如果不为空，就放到队列里面，然后弹出去，在打印它
+            if(cur.left!=null){
+                queue.offer(cur.left);
+            }
+            if(cur.right!=null){
+                queue.offer(cur.right);
+            }
+        }
+    }
+}
+
+class Solution{
+/*
+    static class TreeNode{
+        public char val;
+        public BinaryTree.TreeNode left;
+        public BinaryTree.TreeNode right;
+
+        public TreeNode(char val){
+            this.val=val;
+        }
+    }
+
+
+    public List<Integer> rightSideView(TreeNode root){
+        List<Integer> res=new ArrayList<>();//res里面存放右视图的节点
+        if(root==null){
+            return res;//如果结点是空，直接返回null的res
+        }
+        Queue<TreeNode>queue=new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            for(int i=0;i<size;i++){
+                TreeNode node=queue.poll();
+                if(node.left!=null){
+                    queue.offer(node.left);
+                }
+                if(node.right!=null){
+                    queue.offer(node.right);
+                }
+                if(i==size-1){
+                    res.add(node.val);
+                }
+            }
+        }
+        return res;
+    }*/
+
+    Link<Integer> res =new ArrayList<>();//定义结果列表
+    public Link<Integer> rightSideView(TreeNode root){
+        dfs(root,0);//从根节点开始访问，深度为0
+        return res;
+    }
+    private void dfs(TreeNode root,int depth){
+        if(root==null)return;
+        if(depth==res.size())res.add(root.val);
+        //如果当前节点所在的深度还没有出现在res里面，
+        // 说明在该深度下当前节点是第一个被访问的节点，因此将该节点加入res当中
+        depth++;
+        dfs(root.right,depth);//递归访问右子树
+        dfs(root.left,depth);//递归访问左子树
     }
 }
 
