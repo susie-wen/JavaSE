@@ -152,9 +152,31 @@ public class BinaryTree {
             }
         }
     }
+
+    // 判断一棵树是不是完全二叉树
+    boolean isCompleteTree(TreeNode root){
+        if(root==null)return true;
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode cur=queue.poll();
+            if(cur!=null){//只要节点不为空，就把子节点全部放入队列当中
+                queue.offer(cur.left);
+                queue.offer(cur.right);
+            }else{
+                break;
+            }
+        }
+        while(queue.isEmpty()){
+            TreeNode cur=queue.peek();
+            if(cur!=null)return false;
+            else queue.poll();
+        }
+        return true;
+    }
 }
 
-class Solution{
+class Solution1{
 /*
     static class TreeNode{
         public char val;
@@ -192,7 +214,7 @@ class Solution{
         return res;
     }*/
 
-    Link<Integer> res =new ArrayList<>();//定义结果列表
+/*    Link<Integer> res =new ArrayList<>();//定义结果列表
     public Link<Integer> rightSideView(TreeNode root){
         dfs(root,0);//从根节点开始访问，深度为0
         return res;
@@ -205,8 +227,35 @@ class Solution{
         depth++;
         dfs(root.right,depth);//递归访问右子树
         dfs(root.left,depth);//递归访问左子树
-    }
+    }*/
 }
+
+/*class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> ret = new ArrayList<>();
+        if (root == null) return ret;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> row = new ArrayList<>();
+            while (size > 0) {
+                TreeNode cur = queue.poll();
+                size--;
+                row.add(cur.val);
+                if (cur.left != null) {
+                    queue.offer(cur.left);
+                }
+                if (cur.right != null) {
+                    queue.offer(cur.right);
+                }
+
+            }
+            ret.add(row);
+        }
+        return ret;
+    }
+}*/
 
 
 
