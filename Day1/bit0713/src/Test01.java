@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class Test01 {
 
-    public void preorderTraversalNor(TreeNode root){
+/*    public void preorderTraversalNor(TreeNode root){
         Stack<TreeNode> stack=new Stack<>();
         TreeNode cur=root;
         while(cur!=null || !stack.empty()){
@@ -21,11 +21,11 @@ public class Test01 {
             System.out.print(top.val+" ");
             cur=top.right;
         }
-    }
+    }*/
 }
 
 class Solution {
-    public List<Integer> postorderTraversal(TreeNode root) {
+/*    public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> ret=new ArrayList<>();
         Stack<TreeNode> stack=new Stack<>();
         TreeNode prev=null;
@@ -48,5 +48,5 @@ class Solution {
             cur=top.right;
         }
         return ret;
-    }
+    }*/
 }
