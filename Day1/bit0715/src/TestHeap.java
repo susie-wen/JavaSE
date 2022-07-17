@@ -38,7 +38,7 @@ public class TestHeap {
         //起码得有左孩子才能进入循环
         while(child<len){
             //判断左右孩子谁大，前提是必须有右孩子
-            if(child+1<usedSize && elem[child]<elem[child+1]){
+            if(child+1<len && elem[child]<elem[child+1]){
                 child++;//此时保存了最大值的下标
             }
             if(elem[child]>elem[parent]){
@@ -99,5 +99,14 @@ public class TestHeap {
 
     public boolean isEmpty(){
         return usedSize==0;
+    }
+
+    //堆排序
+    public void heapSort(){
+        int end=usedSize-1;
+        while(end>0){
+            swap(elem,0,end);shiftDown(0,end);
+            end--;
+        }
     }
 }
