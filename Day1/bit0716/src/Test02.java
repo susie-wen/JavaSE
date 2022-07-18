@@ -11,7 +11,8 @@ public class Test02 {
         int[] array={9,1,2,5,7,4,8,6,3,5};
         Sort sort=new Sort();
 //        sort.insertSort(array);
-        Sort.shellSort(array);
+//        Sort.shellSort(array);
+        Sort.selectSort(array);
         System.out.println(Arrays.toString(array));
     }
 }

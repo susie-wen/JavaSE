@@ -55,13 +55,13 @@ public class Sort {
     //直接选择排序
     public static void selectSort(int[] array){
         for(int i=0;i< array.length;i++){
-            int min=array[i];
-            for(int j=i;j<array.length;j++){
-                if(min>array[j]){
-                    min=array[j];
+            int minIndex=i;
+            for(int j=i+1;j<array.length;j++){
+                if(array[minIndex]>array[j]){
+                    minIndex=j;
                 }
             }
-            swap(array,min,i);
+            swap(array,minIndex,i);
             }
         }
         //交换函数：交换array数组的i和j下标
@@ -70,4 +70,63 @@ public class Sort {
             array[i]=array[j];
             array[j]=tmp;
     }
+
+/*    public static void selectSort2(int[] array){
+        int left=0;
+        int right=array.length-1;
+        while(left<right){
+            int minIndex=left;
+            int maxIndex=right;
+            for(int i=left;i<=right;i++){
+                if(array[i]<array[minIndex]){
+                    minIndex=i;
+                }
+                if(array[i]>array[maxIndex]){
+                    maxIndex=i;
+                }
+            }
+            swap(array,left,minIndex);
+            swap(array,right,maxIndex);
+            left++;
+            right--;
+        }
+    }*/
+
+    //堆排序
+    public static void heapSort(int[] array){
+        //1.创建大根堆
+        createBigHeap(array);
+        int end= array.length-1;
+        while(end>=0){
+            swap(array,0,end);
+            shiftDown(array,0,end);
+            end--;
+        }
+    }
+
+    //创建一个大根堆
+    private static void  createBigHeap(int[] array){
+        for(int parent=(array.length-1-1)/2;parent>=0;parent--){
+            shiftDown(array,parent, array.length);
+        }
+    }
+
+    //向下调整
+    private static void shiftDown(int[] array,int parent,int len){
+        int child=2*parent-1;
+        //最起码保证有左孩子
+        while(child<len){
+            if(child+1<len && array[child]<array[child+1]){
+                child++;
+            }
+            if(array[child]>array[parent]){
+                swap(array,child,parent);
+                parent=child;
+                child=2*parent+1;
+            }else{
+                break;
+            }
+        }
+    }
+
 }
