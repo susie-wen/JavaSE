@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * @author Susie-Wen
@@ -23,8 +24,29 @@ public class Test02 {
         return start;
     }
 
-    public static void quickSort(int[] array){
+    public static void quickSort1(int[] array){
         quick(array,0, array.length-1);
+    }
+
+    //非递归实现快速排序
+    public static void quickSort(int[] array){
+        Stack<Integer> stack=new Stack<>();
+        int left=0;
+        int right=array.length-1;
+        int pivot=partition(array,left,right);
+        if(pivot>left+1){
+            stack.push(left);
+            stack.push(pivot-1);
+        }
+        if(pivot<right-1){
+            stack.push(pivot+1);
+            stack.push(right);
+        }
+        while(!stack.empty()){
+            right=stack.pop();
+            left=stack.pop();
+            pivot=partition();
+        }
     }
 
     private static void quick(int[] array,int left,int right){
@@ -32,10 +54,43 @@ public class Test02 {
         //当左边=右边时，相当于只有一个节点
         // 而左边有可能大于右边，即没有子树（因为新的right=基准-1），可能超过left，因此要大于
         if(left>=right)return;
+
+        int index=midNumIndex(array,left,right);
+        swap(array,left,right);//此时基准已经被改变了
+
         int pivot=partition(array,left,right);//找到基准
         //递归基准的左边和右边
         quick(array,left,pivot-1);
         quick(array,pivot+1,right);
+    }
+
+    private static void swap(int[] array, int j, int i) {
+        int tmp=array[j];
+        array[j]=array[i];
+        array[i]=tmp;
+    }
+
+    //三数取中法,解决快排栈溢出问题
+    private static int midNumIndex(int[] array,int left,int right){
+        int mid=(left+right)/2;
+        //3<9
+        if(array[left]<array[right]){
+            if(array[mid]<array[left]){
+                return left;
+            }else if(array[mid]>array[right]){
+                return right;
+            }else{
+                return mid;
+            }
+        }else{//9>3
+                if(array[mid]<array[right]){
+                    return right;
+                }else if(array[mid]>array[left]){
+                    return left;
+                }else{
+                    return mid;
+                }
+            }
     }
 
     public static void main(String[] args) {
