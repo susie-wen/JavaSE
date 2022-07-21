@@ -45,7 +45,7 @@ public class Test02 {
         while(!stack.empty()){
             right=stack.pop();
             left=stack.pop();
-            pivot=partition();
+//            pivot=partition();
         }
     }
 
