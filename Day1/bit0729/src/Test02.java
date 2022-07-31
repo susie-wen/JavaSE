@@ -6,8 +6,8 @@
  */
 class MyArray<T>{
     public T[] array=(T[])new Object[10];
-    public void setVal(int pos,int val){
-     //  this.array[pos]=val;
+    public void setVal(int pos,T val){
+       this.array[pos]=val;
     }
     public T getPos(int pos){
         return this.array[pos];
@@ -15,6 +15,8 @@ class MyArray<T>{
 }
 public class Test02 {
     public static void main(String[] args) {
-    MyArray<Integer> myArray=new MyArray<>();
+    MyArray myArray=new MyArray<>();
+    myArray.setVal(0,10);
+    myArray.setVal(1,"hello");
     }
 }
