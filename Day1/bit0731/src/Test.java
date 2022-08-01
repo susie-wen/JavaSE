@@ -17,7 +17,7 @@ class Card{
         this.suit=suit;
     }
     public String toString(){
-            return
+            return "s";
     }
 }
 public class Test {
